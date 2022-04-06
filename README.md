@@ -3,6 +3,6 @@ First readme
 https://apple-surprise-76851.herokuapp.com/
 
 Class = Food
-Type(string)
+Category(string)
 Quality(string)
 Cost(number)
