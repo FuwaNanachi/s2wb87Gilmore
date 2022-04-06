@@ -5,8 +5,11 @@ block content
   p Please leave #{title}
   button(type="button", class="btn btn-secodnary" onclick="moreClaps()") Press Me
   div(id="target") Clap for me 
-    //-var clap_count = 0
-    //-var clap_count +=2 
-    //-{document.getElementById("target").source = clap_count}
+    script.
+      var clap_count = 0;
+      function moreClaps(){
+        clap_count += 2;
+        document.getElementById("target").innerHTML = `Clap ${clap_count} times`
+      }
       
 
