@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  h1= title
+  -let rows=Number(query.rows)
+  -let cols=Number(query.cols)
+  p Number of rows is #{rows} and number of columns is #{cols}
+  if (!Number.isInteger(rows) && !Number.isInteger(cols))
+    p That is not an integer
+  else if (rows > 10 || rows < 1) 
+    p Those integers are too large
+  else if (cols > 10 || cols < 1) 
+    p Those integers are too large or too small
+  else 
+    p everything works 
+  table#outer 
+    -for(let i = 0; i<rows; i++){
+      tr#middle
+        -for(let j = 0; j<cols; j++){
+          td= i+j*j
+        -}
+    -}
+      
+
