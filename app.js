@@ -3,63 +3,22 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var Food = require("./models/foods");
+var Food = require("./models/food");
 
-const connectionString =  
-process.env.MONGO_CON 
-mongoose = require('mongoose'); 
+const connectionString = process.env.MONGO_CON 
+var mongoose = require('mongoose'); 
 mongoose.connect(connectionString,  
 {useNewUrlParser: true, 
 useUnifiedTopology: true}); 
 
-// We can seed the collection if needed on server start 
-async function recreateDB(){ 
-  // Delete everything 
-  await Food.deleteMany(); 
+//Get the default connection 
+var db = mongoose.connection; 
  
-  let instance1 = new 
-Food({category:"fruit",  quality:'good', 
-cost:4}); 
-  instance1.save( function(err,doc) { 
-      if(err) return console.error(err); 
-      console.log("First object saved") 
-  }); 
-} 
- 
-let reseed = true; 
-if (reseed) { recreateDB();}
+//Bind connection to error event  
+db.on('error', console.error.bind(console, 'MongoDB connection error:')); 
+db.once("open", function(){ console.log("Connection to DB succeeded")}); 
 
-async function recreateDB(){ 
-  // Delete everything 
-  await Food.deleteMany(); 
- 
-  let instance2 = new 
-Food({category:"veggie",  quality:'poor', 
-cost:1}); 
-  instance2.save( function(err,doc) { 
-      if(err) return console.error(err); 
-      console.log("Second object saved") 
-  }); 
-} 
- 
-reseed = true; 
-if (reseed) { recreateDB();} 
 
-async function recreateDB(){ 
-  // Delete everything 
-  await Food.deleteMany(); 
- 
-  let instance3 = new 
-Food({category:"fruit",  quality:'good', 
-cost:4}); 
-  instance3.save( function(err,doc) { 
-      if(err) return console.error(err); 
-      console.log("Third object saved") 
-  }); 
-} 
- 
-reseed = true; 
-if (reseed) { recreateDB();} 
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -102,3 +61,21 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+// We can seed the collection if needed on server start 
+async function recreateDB(){ 
+  // Delete everything 
+  await Food.deleteMany(); 
+ 
+  let instance1 = new 
+Food({category:"fruit",  quality:'good', 
+cost:4}); 
+  instance1.save( function(err,doc) { 
+      if(err) return console.error(err); 
+      console.log("First object saved") 
+  }); 
+} 
+
+ 
+reseed = true; 
+if (reseed) { recreateDB();} 
