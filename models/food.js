@@ -5,5 +5,4 @@ const foodSchema = mongoose.Schema({
  cost: Number 
 }) 
  
-module.exports = mongoose.model("Food", 
-foodSchema) 
+module.exports = mongoose.model("Food", foodSchema) 
