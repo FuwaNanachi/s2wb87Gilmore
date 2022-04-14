@@ -2,11 +2,11 @@ extends layout
 
 block content
   h1= title
-  -let results= [{category: "Fruit", cost: 2, quality: "Good"}, {category: "Veggie", cost: 1, quality: "Very Good"}, {category: "Meat", cost: 5, quality: "Spoiled"}]
+  -let item= results
   div(class = "container-fluid")
     div(class="row")
-      each result in results 
-        div(class = "col-sm-2") #{result.category} Category #{result.quality} Quality #{result.cost} Cost
+      each item in results 
+        div(class = "col-sm-2") #{item.category} Category #{item.quality} Quality #{item.cost} Cost
   
 
       
