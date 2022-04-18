@@ -1,0 +1,22 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  - let foodid = toShow.id 
+  - let food_category = toShow.food_category 
+  - let foodcost = toShow.cost 
+  - let foodquality = toShow.quality
+  div 
+    div.row 
+      div(class='foodAttr mr-3') Food ID is: 
+      div #{foodid} 
+    div.row 
+      div(class='foodAttr mr-3') Food Category is: 
+      div #{food_category} 
+    div.row 
+      div(class='foodAttr mr-3') Food Quality is: 
+      div #{foodquality} 
+    div.row 
+      div(class='foodAttr mr-3') Food Cost is: 
+      div #{foodcost} 
