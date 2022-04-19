@@ -54,7 +54,7 @@ exports.food_create_post = async function(req, res) {
 exports.food_delete = async function(req, res) { 
     console.log("delete "  + req.params.id) 
     try { 
-        result = await Food.findByIdAndDelete( req.params.id) 
+        result = await Food.findByIdAndDelete(req.params.id) 
         console.log("Removed " + result) 
         res.send(result) 
     } catch (err) { 
@@ -76,8 +76,7 @@ exports.food_list = async function(req, res) {
 }; 
 
 exports.food_update_put = async function(req, res) { 
-    console.log(`update on id ${req.params.id} with body 
-${JSON.stringify(req.body)}`) 
+    console.log(`update on id ${req.params.id} with body ${JSON.stringify(req.body)}`) 
     try { 
         let toUpdate = await Food.findById( req.params.id) 
         // Do updates of properties 
@@ -90,8 +89,7 @@ ${JSON.stringify(req.body)}`)
         res.send(result) 
     } catch (err) { 
         res.status(500) 
-        res.send(`{"error": ${err}: Update for id ${req.params.id} 
-failed`); 
+        res.send(`{"error": ${err}: Update for id ${req.params.id} failed`); 
     } 
 }; 
 exports.food_view_one_Page = async function(req, res) { 
