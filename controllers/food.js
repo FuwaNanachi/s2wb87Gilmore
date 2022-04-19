@@ -104,3 +104,37 @@ exports.food_view_one_Page = async function(req, res) {
         res.send(`{'error': '${err}'}`); 
         } 
     }; 
+
+    exports.food_create_Page =  function(req, res) { 
+        console.log("create view") 
+        try{ 
+            res.render('foodcreate', { title: 'Food Create'}); 
+        } 
+        catch(err){ 
+            res.status(500) 
+            res.send(`{'error': '${err}'}`); 
+        } 
+    }; 
+    exports.food_update_Page =  async function(req, res) { 
+        console.log("update view for item "+req.query.id) 
+        try{ 
+            let result = await Food.findById(req.query.id) 
+            res.render('foodupdate', { title: 'Food Update', toShow: result }); 
+        } 
+        catch(err){ 
+            res.status(500) 
+            res.send(`{'error': '${err}'}`); 
+        } 
+    }; 
+    exports.food_delete_Page = async function(req, res) { 
+        console.log("Delete view for id "  + req.query.id) 
+        try{ 
+            result = await Food.findById(req.query.id) 
+            res.render('fooddelete', { title: 'Food Delete', toShow: 
+    result }); 
+        } 
+        catch(err){ 
+            res.status(500) 
+            res.send(`{'error': '${err}'}`); 
+        } 
+    }; 
