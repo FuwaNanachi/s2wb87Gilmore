@@ -1,16 +1,14 @@
-extends layout
-
-block content
-  h1= title
-  p Please leave #{title}
-  button(type="button", class="btn btn-secodnary" onclick="moreClaps()") Press Me
-  div(id="target") Clap for me 
-    script.
-      var clap_count = 0;
-      function moreClaps(){
-        clap_count += 2;
-        document.getElementById("target").innerHTML = `Clap ${clap_count} times`
-      }
-  a(href="/food") Link to food
+extends layout 
+ 
+block content 
+  if (!user) 
+    a(href="/login") Login 
+    br 
+    a(href="/register") Register 
+  if (user) 
+    p You are currently logged in as #{user.username} 
+    a(href="/food") Take me to foods 
+    br 
+    a(href="/logout") Logout 
       
 
